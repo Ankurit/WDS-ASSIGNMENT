@@ -1,0 +1,20 @@
+addsub kel01 low
+addsub kel02 medium
+addsub kel03 high
+addobj file01 low
+addobj file02 medium
+addobj file03 high
+read kel01 file01
+read kel02 file01
+read kel03 file01
+read kel03 file03
+read kel02 file03
+read kel01 file02
+read kel02 file02
+read kel01 file02
+write kel01 file03 100
+write kel01 file02 500
+write kel01 file01 200
+write kel02 file03 100
+write kel03 file03 100
+write kel03 file02 200
