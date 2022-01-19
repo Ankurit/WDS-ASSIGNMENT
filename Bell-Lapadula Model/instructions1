@@ -1,0 +1,18 @@
+addsub voter low 
+addsub elecncommissioner medium 
+addsub systmadmin high
+addobj voterid low
+addobj boothcenternumber medium
+addobj partyvotedfor high
+write voter voterid 10000121
+write voter partyvotedfor 5
+write elecncommissioner boothcenternumber 50087
+read voter voterid
+read voter boothcenternumber
+read voter partyvotedfor
+read elecncommissioner voterid
+read elecncommissioner boothcenternumber
+read elecncommissioner partyvotedfor
+read systmadmin voterid
+read systmadmin boothcenternumber
+read systmadmin partyvotedfor
